@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShootingStar | Digital Power, Delivered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-white: rgba(255, 255, 255, 0.9);
+            --primary-silver: rgba(220, 220, 230, 0.8);
+            --primary-blue: rgba(100, 180, 255, 0.7);
+            --primary-violet: rgba(170, 120, 255, 0.7);
+            --accent-gold: rgba(255, 215, 0, 0.7);
+            --accent-electric-blue: rgba(0, 195, 255, 0.8);
+            --accent-cosmic-purple: rgba(150, 80, 255, 0.8);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Background Video */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.4;
+        }
+
+        /* Overlay for background */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(30, 10, 60, 0.3) 0%, rgba(0, 0, 0, 0.8) 70%);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary-white), var(--primary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .headline {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .subheadline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 40px 0 80px;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .card-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .starter .card-glow {
+            background: radial-gradient(circle at center, var(--primary-blue) 0%, transparent 70%);
+        }
+
+        .pro .card-glow {
+            background: radial-gradient(circle at center, var(--accent-electric-blue) 0%, transparent 70%);
+        }
+
+        .elite .card-glow {
+            background: radial-gradient(circle at center, var(--accent-cosmic-purple) 0%, transparent 70%);
+        }
+
+        .card-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .tier-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .tier-tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            margin-right: 10px;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .pro .features-list li::before {
+            color: var(--accent-electric-blue);
+        }
+
+        .elite .features-list li::before {
+            color: var(--accent-cosmic-purple);
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .starter .cta-button {
+            background: linear-gradient(90deg, rgba(100, 180, 255, 0.2), rgba(100, 180, 255, 0.1));
+        }
+
+        .pro .cta-button {
+            background: linear-gradient(90deg, rgba(0, 195, 255, 0.2), rgba(0, 195, 255, 0.1));
+        }
+
+        .elite .cta-button {
+            background: linear-gradient(90deg, rgba(150, 80, 255, 0.2), rgba(150, 80, 255, 0.1));
+        }
+
+        /* Ripple effect for buttons */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Work Gallery */
+        .work-gallery-section {
+            padding: 60px 0 100px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 30px;
+            animation: scroll 40s linear infinite;
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .gallery-caption p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-300px * 6 - 30px * 5));
+            }
+        }
+
+        /* Spark animation for Elite tier */
+        .spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .headline {
+                font-size: 2.8rem;
+            }
+            
+            .pricing-cards {
+                gap: 20px;
+            }
+            
+            .pricing-card {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .headline {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pricing-card {
+                max-width: 400px;
+            }
+            
+            .gallery-track {
+                animation-duration: 30s;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .headline {
+                font-size: 1.8rem;
+            }
+            
+            .pricing-card {
+                padding: 30px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-lines-and-light-streaks-moving-fast-39775-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand-logo">ShootingStar</div>
+            <h1 class="headline">Digital Power, Delivered.<br>Choose Your Path to Greatness.</h1>
+            <p class="subheadline">Experience the future of digital innovation with our AI-powered services, crafted for visionaries who demand excellence.</p>
+        </header>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <div class="pricing-cards">
+                <!-- Starter Tier -->
+                <div class="pricing-card starter">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <h2 class="tier-name">Starter</h2>
+                        <p class="tier-tagline">Crafted for the Visionaries</p>
+                    </div>
+                    <ul class="features-list">
+                        <li>Custom graphics design</li>
+                        <li>Website & brand development</li>
+                        <li>Content editing and enhancement</li>
+                        <li>Marketing scripts</li>
+                        <li>Professional ad campaigns</li>
+                        <li>30-day content strategy</li>
+                    </ul>
+                    <button class="cta-button">Get Started</button>
+                </div>
+
+                <!-- Pro Tier -->
+                <div class="pricing-card pro">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <h2 class="tier-name">Pro</h2>
+                        <p class="tier-tagline">Engineered for Excellence</p>
+                    </div>
+                    <ul class="features-list">
+                        <li>All Starter features</li>
+                        <li>Advanced AI content generation</li>
+                        <li>Multi-platform campaign management</li>
+                        <li>Performance analytics dashboard</li>
+                        <li>Priority support</li>
+                        <li>90-day content strategy</li>
+                    </ul>
+                    <button class="cta-button">Get Started</button>
+                </div>
+
+                <!-- Elite Tier -->
+                <div class="pricing-card elite">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <h2 class="tier-name">Elite</h2>
+                        <p class="tier-tagline">Beyond Imagination</p>
+                    </div>
+                    <ul class="features-list">
+                        <li>All Pro features</li>
+                        <li>Dedicated AI strategy team</li>
+                        <li>Custom AI model development</li>
+                        <li>24/7 premium support</li>
+                        <li>Quarterly innovation workshops</li>
+                        <li>365-day strategic roadmap</li>
+                    </ul>
+                    <button class="cta-button">Get Started</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Gallery -->
+        <section class="work-gallery-section">
+            <h2 class="section-title">Our Digital Masterpieces</h2>
+            <div class="gallery-container">
+                <div class="gallery-track">
+                    <!-- Gallery items will be duplicated for seamless scrolling -->
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Website Design" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>NovaTech Website</h3>
+                            <p>Futuristic corporate identity</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mobile App" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>Quantum Finance App</h3>
+                            <p>AI-powered financial platform</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Brand Identity" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>Stellar Brand System</h3>
+                            <p>Comprehensive visual identity</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1561070791-4b036b06198e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Social Media Campaign" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>Cosmic Campaign</h3>
+                            <p>Multi-platform social strategy</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Data Visualization" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>DataFlow Dashboard</h3>
+                            <p>Interactive analytics platform</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="UI/UX Design" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>Nebula Interface</h3>
+                            <p>Immersive user experience</p>
+                        </div>
+                    </div>
+                    <!-- Duplicate items for seamless loop -->
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Website Design" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>NovaTech Website</h3>
+                            <p>Futuristic corporate identity</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mobile App" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>Quantum Finance App</h3>
+                            <p>AI-powered financial platform</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Brand Identity" class="gallery-image">
+                        <div class="gallery-caption">
+                            <h3>Stellar Brand System</h3>
+                            <p>Comprehensive visual identity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Ripple effect for buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Create spark animations for Elite tier
+        function createSparks() {
+            const eliteCard = document.querySelector('.elite');
+            
+            for (let i = 0; i < 5; i++) {
+                const spark = document.createElement('div');
+                spark.classList.add('spark');
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                spark.style.left = `${x}%`;
+                spark.style.top = `${y}%`;
+                
+                // Random animation delay and duration
+                const delay = Math.random() * 5;
+                const duration = 0.5 + Math.random() * 1;
+                
+                spark.style.animation = `spark ${duration}s ${delay}s infinite`;
+                
+                eliteCard.appendChild(spark);
+            }
+        }
+
+        // Add CSS for spark animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spark {
+                0% {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0) translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize sparks
+        createSparks();
+    </script>
+</body>
+  </html>
