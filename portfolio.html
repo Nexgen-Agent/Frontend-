@@ -407,6 +407,106 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
         }
 
+        /* Case Study Modal */
+        .case-study-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .case-study-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .modal-metrics {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .modal-metric {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .modal-metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 5px;
+        }
+
+        .modal-metric-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        .modal-description {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
         /* Testimonials */
         .testimonials-section {
             padding: 100px 0;
@@ -724,6 +824,14 @@
                 right: 20px;
                 bottom: 20px;
             }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .modal-image {
+                height: 250px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -741,6 +849,10 @@
 
             .testimonial-card {
                 padding: 25px;
+            }
+
+            .modal-metrics {
+                flex-direction: column;
             }
         }
     </style>
@@ -800,7 +912,7 @@
                         <span class="portfolio-category">Web Design</span>
                         <h3 class="portfolio-item-title">NexTech Solutions</h3>
                         <p class="portfolio-item-description">Complete website redesign with advanced UX/UI for a tech startup specializing in AI solutions.</p>
-                        <a href="#" class="portfolio-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        <button class="portfolio-link view-case-study" data-case="nextech">View Case Study <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
@@ -811,7 +923,7 @@
                         <span class="portfolio-category">Branding</span>
                         <h3 class="portfolio-item-title">Luxe Cosmetics</h3>
                         <p class="portfolio-item-description">Complete brand identity development including logo, packaging, and marketing collateral.</p>
-                        <a href="#" class="portfolio-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        <button class="portfolio-link view-case-study" data-case="luxe">View Case Study <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
@@ -822,7 +934,7 @@
                         <span class="portfolio-category">Video Production</span>
                         <h3 class="portfolio-item-title">Quantum Fitness</h3>
                         <p class="portfolio-item-description">Series of promotional videos and social media content for a premium fitness brand.</p>
-                        <a href="#" class="portfolio-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        <button class="portfolio-link view-case-study" data-case="quantum">View Case Study <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
@@ -833,7 +945,7 @@
                         <span class="portfolio-category">Marketing Campaign</span>
                         <h3 class="portfolio-item-title">FinTech Global</h3>
                         <p class="portfolio-item-description">Multi-channel digital marketing campaign that increased leads by 240% in 3 months.</p>
-                        <a href="#" class="portfolio-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        <button class="portfolio-link view-case-study" data-case="fintech">View Case Study <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
@@ -844,7 +956,7 @@
                         <span class="portfolio-category">E-commerce</span>
                         <h3 class="portfolio-item-title">StyleHub</h3>
                         <p class="portfolio-item-description">Complete e-commerce platform development with advanced personalization features.</p>
-                        <a href="#" class="portfolio-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        <button class="portfolio-link view-case-study" data-case="stylehub">View Case Study <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
@@ -855,7 +967,7 @@
                         <span class="portfolio-category">Web Design</span>
                         <h3 class="portfolio-item-title">Innovate Labs</h3>
                         <p class="portfolio-item-description">Interactive corporate website with portfolio showcase and client portal.</p>
-                        <a href="#" class="portfolio-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        <button class="portfolio-link view-case-study" data-case="innovate">View Case Study <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -887,7 +999,7 @@
                             </div>
                         </div>
                         <p class="case-study-description">Complete digital overhaul including website redesign, brand development, and multi-channel marketing strategy for an AI startup.</p>
-                        <a href="#" class="btn btn-primary">Read Full Case Study</a>
+                        <button class="btn btn-primary view-case-study" data-case="techflow">Read Full Case Study</button>
                     </div>
                 </div>
 
@@ -911,12 +1023,42 @@
                             </div>
                         </div>
                         <p class="case-study-description">Complete brand identity development and launch campaign for a premium fitness studio, including video content and social media strategy.</p>
-                        <a href="#" class="btn btn-primary">Read Full Case Study</a>
+                        <button class="btn btn-primary view-case-study" data-case="quantum">Read Full Case Study</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Case Study Modal -->
+    <div class="case-study-modal" id="caseStudyModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Case Study Title</h2>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-metrics" id="modalMetrics">
+                <!-- Metrics will be populated by JavaScript -->
+            </div>
+            <div class="modal-description" id="modalDescription">
+                <!-- Description will be populated by JavaScript -->
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-section-title">The Challenge</h3>
+                <p id="modalChallenge">Challenge description will be populated by JavaScript</p>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-section-title">Our Solution</h3>
+                <p id="modalSolution">Solution description will be populated by JavaScript</p>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-section-title">The Results</h3>
+                <p id="modalResults">Results description will be populated by JavaScript</p>
+            </div>
+            <div class="text-center">
+                <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Testimonials Section -->
     <section class="testimonials-section">
@@ -1032,6 +1174,101 @@
     </div>
 
     <script>
+        // Case Study Data - Easy to add new case studies
+        const caseStudies = {
+            "techflow": {
+                title: "TechFlow AI: Digital Transformation",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+320%", label: "Leads Generated" },
+                    { value: "+180%", label: "Website Traffic" },
+                    { value: "6 months", label: "Project Duration" }
+                ],
+                description: "Complete digital overhaul including website redesign, brand development, and multi-channel marketing strategy for an AI startup.",
+                challenge: "TechFlow AI had a dated online presence that didn't reflect their cutting-edge technology. Their website was difficult to navigate, lacked clear calls-to-action, and failed to convert visitors into leads. They needed a complete digital transformation to position themselves as industry leaders.",
+                solution: "We developed a comprehensive digital strategy that included a complete website redesign with advanced UX/UI, a new brand identity that reflected their innovative approach, and a multi-channel marketing campaign targeting key decision-makers in the tech industry.",
+                results: "Within six months of implementation, TechFlow AI saw a 320% increase in qualified leads and a 180% boost in website traffic. The new website achieved a 45% lower bounce rate and the marketing campaigns generated over $2M in new business opportunities."
+            },
+            "quantum": {
+                title: "Quantum Fitness: Brand Launch",
+                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+450%", label: "Social Engagement" },
+                    { value: "+280%", label: "Membership Signups" },
+                    { value: "4 months", label: "Project Duration" }
+                ],
+                description: "Complete brand identity development and launch campaign for a premium fitness studio, including video content and social media strategy.",
+                challenge: "Quantum Fitness was entering a saturated market with established competitors. They needed a distinctive brand identity and launch strategy that would help them stand out and attract their target demographic of affluent urban professionals.",
+                solution: "We created a premium brand identity with a futuristic aesthetic that reflected their high-tech approach to fitness. Our launch campaign included professional video content, influencer partnerships, and a targeted social media strategy that showcased their unique value proposition.",
+                results: "The launch campaign resulted in a 450% increase in social media engagement and a 280% boost in membership signups compared to their projections. Quantum Fitness achieved full capacity within four months of opening, with a 92% member retention rate after the first three months."
+            },
+            "nextech": {
+                title: "NexTech Solutions Website Redesign",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+150%", label: "Conversion Rate" },
+                    { value: "+90%", label: "Page Views" },
+                    { value: "3 months", label: "Project Duration" }
+                ],
+                description: "Complete website redesign with advanced UX/UI for a tech startup specializing in AI solutions.",
+                challenge: "NexTech Solutions had a confusing website architecture that made it difficult for potential clients to understand their services and expertise. The site was not mobile-friendly and had poor performance metrics.",
+                solution: "We completely redesigned the website with a focus on user experience, creating clear pathways for different visitor types. We implemented a responsive design, improved site speed, and created compelling case studies that showcased their AI solutions.",
+                results: "The redesigned website achieved a 150% increase in conversion rate and a 90% boost in page views. Mobile traffic increased by 120%, and the average time on site improved by 2.5 minutes."
+            },
+            "luxe": {
+                title: "Luxe Cosmetics Brand Identity",
+                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+200%", label: "Brand Recognition" },
+                    { value: "+75%", label: "Online Sales" },
+                    { value: "5 months", label: "Project Duration" }
+                ],
+                description: "Complete brand identity development including logo, packaging, and marketing collateral.",
+                challenge: "Luxe Cosmetics had an inconsistent brand identity across different touchpoints, which diluted their premium positioning. Their packaging didn't stand out on shelves, and their marketing materials lacked cohesion.",
+                solution: "We developed a comprehensive brand identity system that included a refined logo, elegant packaging design, and consistent marketing collateral. The new identity emphasized luxury and sustainability, key values for their target market.",
+                results: "Brand recognition increased by 200% within the target demographic. Online sales grew by 75% in the first quarter after the rebrand, and retail partners reported a 40% increase in sell-through rates for the new packaging."
+            },
+            "fintech": {
+                title: "FinTech Global Marketing Campaign",
+                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+240%", label: "Leads Generated" },
+                    { value: "+300%", label: "Social Engagement" },
+                    { value: "3 months", label: "Campaign Duration" }
+                ],
+                description: "Multi-channel digital marketing campaign that increased leads by 240% in 3 months.",
+                challenge: "FinTech Global was struggling to generate quality leads in a competitive B2B financial technology market. Their previous marketing efforts were fragmented and failed to communicate their unique value proposition effectively.",
+                solution: "We developed an integrated marketing campaign that combined content marketing, social media advertising, email nurturing, and strategic partnerships. The campaign focused on educating potential clients about the benefits of their platform through case studies and thought leadership content.",
+                results: "The campaign generated a 240% increase in qualified leads and a 300% boost in social media engagement. Cost per lead decreased by 35%, and the sales team reported that leads were 50% more likely to convert compared to previous campaigns."
+            },
+            "stylehub": {
+                title: "StyleHub E-commerce Platform",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+120%", label: "Online Revenue" },
+                    { value: "+65%", label: "Average Order Value" },
+                    { value: "6 months", label: "Project Duration" }
+                ],
+                description: "Complete e-commerce platform development with advanced personalization features.",
+                challenge: "StyleHub's existing e-commerce platform was outdated, with poor mobile experience and limited personalization capabilities. Cart abandonment rates were high, and repeat customer rates were below industry average.",
+                solution: "We developed a modern e-commerce platform with advanced personalization features, including AI-powered product recommendations, personalized shopping experiences, and streamlined checkout process. The platform was optimized for mobile and integrated with their inventory and CRM systems.",
+                results: "Online revenue increased by 120% in the first six months after launch. Average order value grew by 65%, and cart abandonment rates decreased by 40%. Repeat customer rate improved from 15% to 32%."
+            },
+            "innovate": {
+                title: "Innovate Labs Corporate Website",
+                image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                metrics: [
+                    { value: "+80%", label: "Client Inquiries" },
+                    { value: "+110%", label: "Portfolio Views" },
+                    { value: "4 months", label: "Project Duration" }
+                ],
+                description: "Interactive corporate website with portfolio showcase and client portal.",
+                challenge: "Innovate Labs needed a website that effectively showcased their diverse portfolio of projects while providing a seamless experience for existing clients through a dedicated portal. Their previous site was static and didn't reflect their innovative approach.",
+                solution: "We created a dynamic website with an interactive portfolio showcase that allowed visitors to filter projects by industry and service type. We also developed a secure client portal with project management features, file sharing, and communication tools.",
+                results: "The new website generated an 80% increase in client inquiries and a 110% boost in portfolio views. Client satisfaction scores improved significantly, with 95% of clients reporting that the portal made collaboration easier and more efficient."
+            }
+        };
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.querySelector('.nav-menu');
@@ -1058,9 +1295,9 @@
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     // Add active class to clicked button
                     button.classList.add('active');
-                    
+
                     const filterValue = button.getAttribute('data-filter');
-                    
+
                     portfolioItems.forEach(item => {
                         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                             item.style.display = 'block';
@@ -1069,6 +1306,66 @@
                         }
                     });
                 });
+            });
+
+            // Case Study Modal
+            const caseStudyModal = document.getElementById('caseStudyModal');
+            const closeModal = document.getElementById('closeModal');
+            const viewCaseStudyButtons = document.querySelectorAll('.view-case-study');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalImage = document.getElementById('modalImage');
+            const modalMetrics = document.getElementById('modalMetrics');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalChallenge = document.getElementById('modalChallenge');
+            const modalSolution = document.getElementById('modalSolution');
+            const modalResults = document.getElementById('modalResults');
+
+            viewCaseStudyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const caseId = button.getAttribute('data-case');
+                    const caseData = caseStudies[caseId];
+
+                    if (caseData) {
+                        modalTitle.textContent = caseData.title;
+                        modalImage.src = caseData.image;
+                        modalImage.alt = caseData.title;
+                        
+                        // Clear previous metrics
+                        modalMetrics.innerHTML = '';
+                        
+                        // Add metrics
+                        caseData.metrics.forEach(metric => {
+                            const metricElement = document.createElement('div');
+                            metricElement.className = 'modal-metric';
+                            metricElement.innerHTML = `
+                                <div class="modal-metric-value">${metric.value}</div>
+                                <div class="modal-metric-label">${metric.label}</div>
+                            `;
+                            modalMetrics.appendChild(metricElement);
+                        });
+                        
+                        modalDescription.textContent = caseData.description;
+                        modalChallenge.textContent = caseData.challenge;
+                        modalSolution.textContent = caseData.solution;
+                        modalResults.textContent = caseData.results;
+                        
+                        caseStudyModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            closeModal.addEventListener('click', () => {
+                caseStudyModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside
+            caseStudyModal.addEventListener('click', (e) => {
+                if (e.target === caseStudyModal) {
+                    caseStudyModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
             });
 
             // Testimonial Carousel
