@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | ShootingStar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0C0C0C;
+            --primary-gold: #D4AF37;
+            --accent-blue: #00BFFF;
+            --text-light: #F5F5F7;
+            --text-gray: #A1A1A6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --indigo: #4B0082;
+            --deep-indigo: #2D1B69;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(12, 12, 12, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-gold);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            color: var(--bg-dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Terms Hero Section */
+        .terms-hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .terms-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.7;
+        }
+
+        .terms-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(12, 12, 12, 0.8), rgba(12, 12, 12, 0.4), rgba(12, 12, 12, 0.8));
+            z-index: -1;
+        }
+
+        .terms-hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .terms-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .terms-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Terms Content Section */
+        .terms-section {
+            padding: 80px 0;
+            background: rgba(45, 27, 105, 0.1);
+        }
+
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .terms-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .terms-section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .terms-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--accent-blue));
+        }
+
+        .terms-article {
+            margin-bottom: 40px;
+        }
+
+        .terms-article:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .article-content {
+            color: var(--text-light);
+        }
+
+        .article-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--primary-gold);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .contact-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            position: sticky;
+            top: 100px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .quick-nav-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .quick-nav-list {
+            list-style: none;
+        }
+
+        .quick-nav-item {
+            margin-bottom: 10px;
+        }
+
+        .quick-nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-nav-link:hover {
+            color: var(--primary-gold);
+        }
+
+        .quick-nav-link i {
+            font-size: 0.8rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 191, 255, 0.1));
+            z-index: -1;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            color: var(--bg-dark);
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-gray);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Sticky CTA Button */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 100px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            color: var(--bg-dark);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .sticky-cta.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(12, 12, 12, 0.95);
+                backdrop-filter: blur(10px);
+                width: 80%;
+                height: calc(100vh - 70px);
+                padding: 40px 20px;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--glass-border);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .terms-hero {
+                height: 30vh;
+            }
+
+            .terms-title {
+                font-size: 2.5rem;
+            }
+
+            .terms-content {
+                padding: 30px;
+            }
+
+            .terms-section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .sticky-cta {
+                right: 20px;
+                bottom: 20px;
+            }
+
+            .back-to-top {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .terms-content {
+                padding: 20px;
+            }
+
+            .terms-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">ShootingStar</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="subscriptions.html" class="nav-link">Subscriptions</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Terms Hero Section -->
+    <section class="terms-hero">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Terms Background" class="terms-hero-bg">
+        <div class="terms-hero-overlay"></div>
+        <div class="terms-hero-content">
+            <h1 class="terms-title">Terms of Service</h1>
+            <p class="terms-subtitle">Please read these terms carefully before using our services</p>
+        </div>
+    </section>
+
+    <!-- Terms Content Section -->
+    <section class="terms-section">
+        <div class="container">
+            <div class="terms-container">
+                <p class="last-updated">Last updated: January 1, 2025</p>
+                
+                <div class="quick-nav">
+                    <h3 class="quick-nav-title">Quick Navigation</h3>
+                    <ul class="quick-nav-list">
+                        <li class="quick-nav-item"><a href="#agreement" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Agreement to Terms</a></li>
+                        <li class="quick-nav-item"><a href="#services" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Our Services</a></li>
+                        <li class="quick-nav-item"><a href="#payments" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Payments & Billing</a></li>
+                        <li class="quick-nav-item"><a href="#intellectual" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Intellectual Property</a></li>
+                        <li class="quick-nav-item"><a href="#privacy" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Privacy & Data</a></li>
+                        <li class="quick-nav-item"><a href="#liability" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Liability & Indemnification</a></li>
+                        <li class="quick-nav-item"><a href="#termination" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Termination</a></li>
+                        <li class="quick-nav-item"><a href="#governing" class="quick-nav-link"><i class="fas fa-chevron-right"></i> Governing Law</a></li>
+                    </ul>
+                </div>
+
+                <div class="terms-content">
+                    <h2 class="terms-section-title">Terms of Service</h2>
+                    
+                    <div class="terms-article" id="agreement">
+                        <h3 class="article-title">1. Agreement to Terms</h3>
+                        <div class="article-content">
+                            <p>By accessing or using ShootingStar's services, websites, or applications (collectively, the "Services"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our Services.</p>
+                            <p>These Terms apply to all visitors, users, and others who access or use the Service. You represent that you are at least the age of majority in your state or province of residence, or that you are the age of majority in your state or province of residence and you have given us your consent to allow any of your minor dependents to use this site.</p>
+                            <div class="highlight">
+                                <p><strong>Important:</strong> We reserve the right to update or modify these Terms at any time without prior notice. Your continued use of the Services after any changes constitutes your acceptance of the new Terms.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="services">
+                        <h3 class="article-title">2. Our Services</h3>
+                        <div class="article-content">
+                            <p>ShootingStar provides digital marketing services including but not limited to:</p>
+                            <ul>
+                                <li>Website design and development</li>
+                                <li>Brand identity and graphic design</li>
+                                <li>Video production and editing</li>
+                                <li>Marketing campaign creation and management</li>
+                                <li>Content creation and strategy</li>
+                                <li>Social media management</li>
+                                <li>AI-powered marketing solutions</li>
+                            </ul>
+                            <p>We strive to provide high-quality services, but we do not guarantee that our Services will be uninterrupted, timely, secure, or error-free. We reserve the right to modify, suspend, or discontinue any aspect of our Services at any time.</p>
+                            <p>Project timelines and deliverables will be outlined in individual service agreements or statements of work. While we make every effort to meet deadlines, external factors may occasionally cause delays beyond our control.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="payments">
+                        <h3 class="article-title">3. Payments & Billing</h3>
+                        <div class="article-content">
+                            <p><strong>Project-Based Services:</strong> For one-time projects, we typically require a 50% deposit before work begins, with the balance due upon project completion. Payment plans may be available for larger projects.</p>
+                            <p><strong>Subscription Services:</strong> Monthly subscription fees are billed in advance on a recurring basis. You may cancel your subscription at any time, but refunds are not provided for partial billing periods.</p>
+                            <p><strong>Late Payments:</strong> Accounts with outstanding balances beyond 30 days may be subject to late fees of 1.5% per month or the maximum allowed by law. Services may be suspended for accounts with balances over 60 days past due.</p>
+                            <p><strong>Refunds:</strong> Due to the custom nature of our services, refunds are typically not provided once work has commenced. If you are dissatisfied with our services, please contact us to discuss potential resolutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="intellectual">
+                        <h3 class="article-title">4. Intellectual Property</h3>
+                        <div class="article-content">
+                            <p><strong>Client Materials:</strong> You retain ownership of any content, materials, or intellectual property that you provide to us for use in your projects.</p>
+                            <p><strong>Our Work:</strong> Upon full payment, you receive ownership of the final deliverables created specifically for your project. We retain the right to display the work in our portfolio and marketing materials unless otherwise specified in a separate agreement.</p>
+                            <p><strong>Our IP:</strong> ShootingStar retains ownership of our proprietary methods, processes, tools, templates, and pre-existing intellectual property used in creating your deliverables. We grant you a license to use these elements as part of your final deliverables.</p>
+                            <p><strong>Third-Party Assets:</strong> Any third-party assets (fonts, stock images, software, etc.) used in your project may be subject to their own licensing terms, which we will communicate to you.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="privacy">
+                        <h3 class="article-title">5. Privacy & Data</h3>
+                        <div class="article-content">
+                            <p>Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your personal information. By using our Services, you agree to the collection and use of information in accordance with our Privacy Policy.</p>
+                            <p>We implement security measures to protect your data, but no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.</p>
+                            <p>We may use third-party service providers to monitor and analyze the use of our Service, such as Google Analytics. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="liability">
+                        <h3 class="article-title">6. Liability & Indemnification</h3>
+                        <div class="article-content">
+                            <p><strong>Limitation of Liability:</strong> In no event shall ShootingStar, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Services.</p>
+                            <p><strong>Maximum Liability:</strong> Our total cumulative liability to you for all claims arising from or related to these Terms or your use of our Services shall not exceed the total amount paid by you to us in the six months preceding the event giving rise to the claim.</p>
+                            <p><strong>Indemnification:</strong> You agree to defend, indemnify and hold harmless ShootingStar and its licensees and licensors, and their employees, contractors, agents, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses resulting from or arising out of your use and access of the Service, by you or any person using your account and password, or a breach of these Terms.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="termination">
+                        <h3 class="article-title">7. Termination</h3>
+                        <div class="article-content">
+                            <p>We may terminate or suspend your access to our Services immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+                            <p>Upon termination, your right to use the Services will immediately cease. If you wish to terminate your account, you may simply discontinue using the Services or notify us in writing.</p>
+                            <p>All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-article" id="governing">
+                        <h3 class="article-title">8. Governing Law</h3>
+                        <div class="article-content">
+                            <p>These Terms shall be governed and construed in accordance with the laws of California, United States, without regard to its conflict of law provisions.</p>
+                            <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.</p>
+                            <p>These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have had between us regarding the Service.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <p>If you have any questions about these Terms, please contact us at <a href="mailto:legal@shootingstar.com" class="contact-link">legal@shootingstar.com</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <h2 class="cta-title">Have Questions About Our Terms?</h2>
+            <p class="cta-subtitle">Our team is here to help clarify any aspect of our terms of service.</p>
+            <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ShootingStar</h3>
+                    <p>The System That Builds Systems. AI-Powered Marketing for the modern business.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Branding & Design</a></li>
+                        <li><a href="services.html">Ad Creation</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Partners</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Agency Program</a></li>
+                        <li><a href="#">Referral Program</a></li>
+                        <li><a href="#">Become a Partner</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 ShootingStar — Built by Nexgen Intelligence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta" id="stickyCta">
+        <i class="fas fa-robot"></i> Talk to Nexgen
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for quick navigation
+        document.querySelectorAll('.quick-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Sticky CTA Button
+        const stickyCta = document.getElementById('stickyCta');
+
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100;
+
+            if (scrollPercentage > 70) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+
+        // Nexgen Button Handler
+        const nexgenButtons = document.querySelectorAll('#stickyCta');
+
+        nexgenButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("Nexgen AI Assistant is coming soon! This feature will allow you to chat with our AI to get personalized recommendations for your business.");
+            });
+        });
+    </script>
+</body>
+</html>
