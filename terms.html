@@ -30,6 +30,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px; /* Account for fixed navbar */
         }
 
         body {
@@ -64,7 +65,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(12, 12, 12, 0.8);
+            background: rgba(12, 12, 12, 0.9);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 15px 0;
@@ -207,6 +208,8 @@
             border-radius: 20px;
             padding: 50px;
             box-shadow: var(--glass-shadow);
+            position: relative;
+            z-index: 1;
         }
 
         .terms-section-title {
@@ -229,6 +232,7 @@
 
         .terms-article {
             margin-bottom: 40px;
+            scroll-margin-top: 90px; /* Account for fixed navbar when scrolling to anchors */
         }
 
         .terms-article:last-child {
@@ -294,6 +298,7 @@
             padding: 20px;
             margin-bottom: 30px;
             box-shadow: var(--glass-shadow);
+            z-index: 10;
         }
 
         .quick-nav-title {
@@ -387,6 +392,8 @@
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             padding: 60px 0 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -471,7 +478,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            z-index: 1000;
+            z-index: 1001; /* Above navbar */
         }
 
         .back-to-top.visible {
@@ -496,7 +503,7 @@
             font-weight: 500;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            z-index: 1000;
+            z-index: 1001; /* Above navbar */
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -535,6 +542,7 @@
                 padding: 40px 20px;
                 transition: right 0.3s ease;
                 border-left: 1px solid var(--glass-border);
+                z-index: 1000;
             }
 
             .nav-menu.active {
@@ -626,7 +634,7 @@
         <div class="container">
             <div class="terms-container">
                 <p class="last-updated">Last updated: January 1, 2025</p>
-                
+
                 <div class="quick-nav">
                     <h3 class="quick-nav-title">Quick Navigation</h3>
                     <ul class="quick-nav-list">
@@ -643,7 +651,7 @@
 
                 <div class="terms-content">
                     <h2 class="terms-section-title">Terms of Service</h2>
-                    
+
                     <div class="terms-article" id="agreement">
                         <h3 class="article-title">1. Agreement to Terms</h3>
                         <div class="article-content">
@@ -826,7 +834,7 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
+
                 window.scrollTo({
                     top: targetElement.offsetTop - 100,
                     behavior: 'smooth'
