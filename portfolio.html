@@ -287,6 +287,12 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: pointer;
+            padding: 0;
         }
 
         .portfolio-link:hover {
@@ -332,6 +338,9 @@
             overflow: hidden;
             transition: all 0.4s ease;
             box-shadow: var(--glass-shadow);
+            min-height: 650px; /* Make cards thicker */
+            display: flex;
+            flex-direction: column;
         }
 
         .case-study-card:hover {
@@ -341,34 +350,39 @@
 
         .case-study-image {
             width: 100%;
-            height: 250px;
+            height: 300px; /* Increased height */
             object-fit: cover;
         }
 
         .case-study-content {
-            padding: 30px;
+            padding: 40px; /* Increased padding */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .case-study-title {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem; /* Slightly larger */
+            margin-bottom: 20px;
         }
 
         .case-study-metrics {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .metric {
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex: 1;
+            min-width: 120px;
         }
 
         .metric-value {
-            font-size: 1.8rem;
+            font-size: 2rem; /* Larger metric values */
             font-weight: 700;
             color: var(--primary-gold);
             margin-bottom: 5px;
@@ -381,7 +395,8 @@
 
         .case-study-description {
             color: var(--text-gray);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            flex-grow: 1;
         }
 
         .btn {
@@ -393,6 +408,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            border: none;
+            font-family: inherit;
         }
 
         .btn-primary {
@@ -738,6 +755,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
         }
 
         .sticky-cta.visible {
@@ -832,6 +850,10 @@
             .modal-image {
                 height: 250px;
             }
+
+            .case-study-card {
+                min-height: 600px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -853,6 +875,15 @@
 
             .modal-metrics {
                 flex-direction: column;
+            }
+
+            .case-study-metrics {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .case-study-card {
+                min-height: 650px;
             }
         }
     </style>
@@ -879,7 +910,9 @@
 
     <!-- Portfolio Hero Section -->
     <section class="portfolio-hero">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Portfolio Background" class="portfolio-hero-bg">
+        <video class="portfolio-hero-bg" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-flowing-lights-3537-large.mp4" type="video/mp4">
+        </video>
         <div class="portfolio-hero-overlay"></div>
         <div class="portfolio-hero-content">
             <h1 class="portfolio-title">Our Portfolio</h1>
@@ -998,7 +1031,7 @@
                                 <div class="metric-label">Project Duration</div>
                             </div>
                         </div>
-                        <p class="case-study-description">Complete digital overhaul including website redesign, brand development, and multi-channel marketing strategy for an AI startup.</p>
+                        <p class="case-study-description">Complete digital overhaul including website redesign, brand development, and multi-channel marketing strategy for an AI startup. Our approach combined cutting-edge design with data-driven marketing to position TechFlow as an industry leader.</p>
                         <button class="btn btn-primary view-case-study" data-case="techflow">Read Full Case Study</button>
                     </div>
                 </div>
@@ -1022,7 +1055,7 @@
                                 <div class="metric-label">Project Duration</div>
                             </div>
                         </div>
-                        <p class="case-study-description">Complete brand identity development and launch campaign for a premium fitness studio, including video content and social media strategy.</p>
+                        <p class="case-study-description">Complete brand identity development and launch campaign for a premium fitness studio, including video content and social media strategy. We created a distinctive visual identity that resonated with their target audience and drove unprecedented engagement.</p>
                         <button class="btn btn-primary view-case-study" data-case="quantum">Read Full Case Study</button>
                     </div>
                 </div>
