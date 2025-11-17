@@ -314,6 +314,7 @@
         .service-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -344,6 +345,184 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Service Details Section */
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        .service-details.active {
+            max-height: 1000px;
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .details-features h4, .details-process h4 {
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .details-features ul, .details-process ol {
+            color: var(--text-gray);
+            margin-left: 20px;
+        }
+
+        .details-features li, .details-process li {
+            margin-bottom: 10px;
+        }
+
+        /* Pricing Popup */
+        .pricing-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pricing-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .popup-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 250px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .starter .card-glow {
+            background: radial-gradient(circle at center, var(--accent-blue) 0%, transparent 70%);
+        }
+
+        .pro .card-glow {
+            background: radial-gradient(circle at center, var(--accent-blue) 0%, transparent 70%);
+        }
+
+        .elite .card-glow {
+            background: radial-gradient(circle at center, var(--primary-gold) 0%, transparent 70%);
+        }
+
+        .card-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .tier-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-gold);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            margin-right: 10px;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .elite .features-list li::before {
+            color: var(--primary-gold);
         }
 
         /* Process Section */
@@ -604,6 +783,15 @@
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card {
+                max-width: 400px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -652,6 +840,14 @@
             .cta-title {
                 font-size: 2.5rem;
             }
+
+            .details-content {
+                grid-template-columns: 1fr;
+            }
+
+            .service-actions {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 480px) {
@@ -678,6 +874,10 @@
 
             .page-title {
                 font-size: 2rem;
+            }
+
+            .popup-content {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -718,7 +918,7 @@
     <section class="categories-section">
         <div class="container">
             <h2 class="section-title">Digital Marketing Solutions</h2>
-            
+
             <div class="categories-filter">
                 <button class="filter-btn active" data-filter="all">All Services</button>
                 <button class="filter-btn" data-filter="design">Design</button>
@@ -745,7 +945,36 @@
                     <div class="service-pricing">From $299</div>
                     <div class="service-actions">
                         <button class="btn btn-primary view-packages" data-service="Website Design">View Packages</button>
-                        <button class="btn btn-secondary">Learn More</button>
+                        <button class="btn btn-secondary learn-more">Learn More</button>
+                    </div>
+                    <div class="service-details">
+                        <div class="details-content">
+                            <div class="details-features">
+                                <h4>What's Included</h4>
+                                <ul>
+                                    <li>Custom design tailored to your brand</li>
+                                    <li>Mobile-first responsive development</li>
+                                    <li>SEO optimization and meta setup</li>
+                                    <li>Contact forms and lead capture</li>
+                                    <li>Integration with analytics tools</li>
+                                    <li>Content management system training</li>
+                                    <li>Performance optimization</li>
+                                    <li>Security implementation</li>
+                                </ul>
+                            </div>
+                            <div class="details-process">
+                                <h4>Our Process</h4>
+                                <ol>
+                                    <li>Discovery & strategy session</li>
+                                    <li>Wireframing and design mockups</li>
+                                    <li>Development and coding</li>
+                                    <li>Content integration</li>
+                                    <li>Testing and quality assurance</li>
+                                    <li>Launch and deployment</li>
+                                    <li>Post-launch support</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -766,7 +995,36 @@
                     <div class="service-pricing">From $199</div>
                     <div class="service-actions">
                         <button class="btn btn-primary view-packages" data-service="Brand Graphics">View Packages</button>
-                        <button class="btn btn-secondary">Learn More</button>
+                        <button class="btn btn-secondary learn-more">Learn More</button>
+                    </div>
+                    <div class="service-details">
+                        <div class="details-content">
+                            <div class="details-features">
+                                <h4>What's Included</h4>
+                                <ul>
+                                    <li>Logo design in multiple formats</li>
+                                    <li>Color palette with HEX/RGB values</li>
+                                    <li>Typography system with font pairing</li>
+                                    <li>Brand guidelines document</li>
+                                    <li>Business card design</li>
+                                    <li>Letterhead and envelope design</li>
+                                    <li>Social media profile graphics</li>
+                                    <li>Brand application examples</li>
+                                </ul>
+                            </div>
+                            <div class="details-process">
+                                <h4>Our Process</h4>
+                                <ol>
+                                    <li>Brand discovery questionnaire</li>
+                                    <li>Mood board creation</li>
+                                    <li>Logo concept development</li>
+                                    <li>Brand system expansion</li>
+                                    <li>Collateral design</li>
+                                    <li>Brand guide creation</li>
+                                    <li>Final file delivery</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -787,7 +1045,36 @@
                     <div class="service-pricing">From $149</div>
                     <div class="service-actions">
                         <button class="btn btn-primary view-packages" data-service="Video Editing">View Packages</button>
-                        <button class="btn btn-secondary">Learn More</button>
+                        <button class="btn btn-secondary learn-more">Learn More</button>
+                    </div>
+                    <div class="service-details">
+                        <div class="details-content">
+                            <div class="details-features">
+                                <h4>What's Included</h4>
+                                <ul>
+                                    <li>Script development and storyboarding</li>
+                                    <li>Professional video shooting (if required)</li>
+                                    <li>Video editing and color correction</li>
+                                    <li>Motion graphics and animation</li>
+                                    <li>Sound design and audio mixing</li>
+                                    <li>Multiple format exports</li>
+                                    <li>Platform-specific optimization</li>
+                                    <li>Thumbnail design</li>
+                                </ul>
+                            </div>
+                            <div class="details-process">
+                                <h4>Our Process</h4>
+                                <ol>
+                                    <li>Creative brief and concept development</li>
+                                    <li>Scriptwriting and storyboarding</li>
+                                    <li>Production planning</li>
+                                    <li>Filming or stock footage selection</li>
+                                    <li>Editing and post-production</li>
+                                    <li>Client review and revisions</li>
+                                    <li>Final delivery and optimization</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -808,7 +1095,36 @@
                     <div class="service-pricing">From $249</div>
                     <div class="service-actions">
                         <button class="btn btn-primary view-packages" data-service="Marketing Scripts">View Packages</button>
-                        <button class="btn btn-secondary">Learn More</button>
+                        <button class="btn btn-secondary learn-more">Learn More</button>
+                    </div>
+                    <div class="service-details">
+                        <div class="details-content">
+                            <div class="details-features">
+                                <h4>What's Included</h4>
+                                <ul>
+                                    <li>Content strategy and planning</li>
+                                    <li>Keyword research and SEO optimization</li>
+                                    <li>Blog post and article writing</li>
+                                    <li>Social media content creation</li>
+                                    <li>Email marketing campaign development</li>
+                                    <li>Content calendar setup</li>
+                                    <li>Performance tracking and reporting</li>
+                                    <li>Content optimization recommendations</li>
+                                </ul>
+                            </div>
+                            <div class="details-process">
+                                <h4>Our Process</h4>
+                                <ol>
+                                    <li>Content audit and analysis</li>
+                                    <li>Strategy development</li>
+                                    <li>Content calendar creation</li>
+                                    <li>Content creation and optimization</li>
+                                    <li>Distribution planning</li>
+                                    <li>Performance monitoring</li>
+                                    <li>Optimization and scaling</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -828,8 +1144,37 @@
                     </ul>
                     <div class="service-pricing">From $399/month</div>
                     <div class="service-actions">
-                        <button class="btn btn-primary">Get Started</button>
-                        <button class="btn btn-secondary">Learn More</button>
+                        <button class="btn btn-primary view-packages" data-service="SEO Optimization">View Packages</button>
+                        <button class="btn btn-secondary learn-more">Learn More</button>
+                    </div>
+                    <div class="service-details">
+                        <div class="details-content">
+                            <div class="details-features">
+                                <h4>What's Included</h4>
+                                <ul>
+                                    <li>Comprehensive SEO audit</li>
+                                    <li>Keyword research and strategy</li>
+                                    <li>On-page optimization</li>
+                                    <li>Technical SEO implementation</li>
+                                    <li>Local SEO optimization</li>
+                                    <li>Content optimization recommendations</li>
+                                    <li>Backlink analysis and strategy</li>
+                                    <li>Monthly performance reporting</li>
+                                </ul>
+                            </div>
+                            <div class="details-process">
+                                <h4>Our Process</h4>
+                                <ol>
+                                    <li>Initial audit and analysis</li>
+                                    <li>Keyword research and strategy</li>
+                                    <li>On-page optimization implementation</li>
+                                    <li>Technical SEO fixes</li>
+                                    <li>Content optimization</li>
+                                    <li>Ongoing monitoring and reporting</li>
+                                    <li>Continuous optimization</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -849,13 +1194,53 @@
                     </ul>
                     <div class="service-pricing">From $599/month</div>
                     <div class="service-actions">
-                        <button class="btn btn-primary">Get Started</button>
-                        <button class="btn btn-secondary">Learn More</button>
+                        <button class="btn btn-primary view-packages" data-service="AI Marketing">View Packages</button>
+                        <button class="btn btn-secondary learn-more">Learn More</button>
+                    </div>
+                    <div class="service-details">
+                        <div class="details-content">
+                            <div class="details-features">
+                                <h4>What's Included</h4>
+                                <ul>
+                                    <li>AI-powered content generation</li>
+                                    <li>Predictive customer analytics</li>
+                                    <li>Automated campaign optimization</li>
+                                    <li>Chatbot setup and integration</li>
+                                    <li>Personalization engine implementation</li>
+                                    <li>AI-driven A/B testing</li>
+                                    <li>Performance prediction modeling</li>
+                                    <li>ROI optimization algorithms</li>
+                                </ul>
+                            </div>
+                            <div class="details-process">
+                                <h4>Our Process</h4>
+                                <ol>
+                                    <li>Data collection and analysis</li>
+                                    <li>AI model selection and training</li>
+                                    <li>Implementation and integration</li>
+                                    <li>Testing and validation</li>
+                                    <li>Performance monitoring</li>
+                                    <li>Optimization and scaling</li>
+                                    <li>Ongoing AI model refinement</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Pricing Popup -->
+    <div class="pricing-popup" id="pricingPopup">
+        <div class="popup-content">
+            <button class="close-popup" id="closePopup">&times;</button>
+            <h2 class="popup-title" id="popupServiceTitle">Service Packages</h2>
+            <div class="pricing-cards" id="pricingCardsContainer">
+                <!-- Dynamic pricing cards will be inserted here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Process Section -->
     <section class="process-section">
@@ -1007,6 +1392,263 @@
     </div>
 
     <script>
+        // Service Pricing Data - Each service has its own unique pricing structure
+        const servicePricing = {
+            "Website Design": {
+                starter: {
+                    name: "Starter",
+                    price: "$299",
+                    description: "Perfect for small businesses",
+                    features: [
+                        "Basic website design",
+                        "5 pages included",
+                        "Standard branding",
+                        "1 revision round",
+                        "7-day delivery",
+                        "Mobile responsive"
+                    ]
+                },
+                pro: {
+                    name: "Pro",
+                    price: "$699",
+                    description: "Ideal for growing brands",
+                    features: [
+                        "Advanced website design",
+                        "10 pages included",
+                        "Premium branding",
+                        "3 revision rounds",
+                        "14-day delivery",
+                        "SEO optimization",
+                        "E-commerce integration"
+                    ]
+                },
+                elite: {
+                    name: "Elite",
+                    price: "$1499",
+                    description: "For enterprise solutions",
+                    features: [
+                        "Custom website design",
+                        "Unlimited pages",
+                        "Complete branding system",
+                        "Unlimited revisions",
+                        "21-day delivery",
+                        "Advanced SEO",
+                        "1-year support",
+                        "Custom animations"
+                    ]
+                }
+            },
+            "Brand Graphics": {
+                starter: {
+                    name: "Essential",
+                    price: "$199",
+                    description: "Basic branding package",
+                    features: [
+                        "Logo design",
+                        "Color palette",
+                        "Typography guide",
+                        "2 revision rounds",
+                        "5-day delivery",
+                        "Social media kit"
+                    ]
+                },
+                pro: {
+                    name: "Professional",
+                    price: "$499",
+                    description: "Complete brand identity",
+                    features: [
+                        "All Essential features",
+                        "Brand guidelines",
+                        "Stationery design",
+                        "5 revision rounds",
+                        "10-day delivery",
+                        "Social media templates",
+                        "Brand assets package"
+                    ]
+                },
+                elite: {
+                    name: "Enterprise",
+                    price: "$899",
+                    description: "Full brand ecosystem",
+                    features: [
+                        "All Professional features",
+                        "Custom illustrations",
+                        "Brand animation",
+                        "Unlimited revisions",
+                        "15-day delivery",
+                        "Marketing collateral",
+                        "Brand strategy session"
+                    ]
+                }
+            },
+            "Video Editing": {
+                starter: {
+                    name: "Basic",
+                    price: "$149",
+                    description: "Simple video edits",
+                    features: [
+                        "Up to 5min video",
+                        "Basic color correction",
+                        "Simple transitions",
+                        "Background music",
+                        "3-day delivery",
+                        "1 revision round"
+                    ]
+                },
+                pro: {
+                    name: "Advanced",
+                    price: "$349",
+                    description: "Professional video production",
+                    features: [
+                        "Up to 15min video",
+                        "Advanced color grading",
+                        "Motion graphics",
+                        "Sound design",
+                        "7-day delivery",
+                        "3 revision rounds",
+                        "Multiple formats"
+                    ]
+                },
+                elite: {
+                    name: "Premium",
+                    price: "$799",
+                    description: "Cinematic video experience",
+                    features: [
+                        "Unlimited length",
+                        "Cinematic color grading",
+                        "Custom animations",
+                        "Voiceover recording",
+                        "14-day delivery",
+                        "Unlimited revisions",
+                        "4K resolution"
+                    ]
+                }
+            },
+            "Marketing Scripts": {
+                starter: {
+                    name: "Starter",
+                    price: "$99",
+                    description: "Basic copywriting",
+                    features: [
+                        "500 words",
+                        "1 script type",
+                        "SEO optimization",
+                        "2 revision rounds",
+                        "3-day delivery",
+                        "Basic research"
+                    ]
+                },
+                pro: {
+                    name: "Professional",
+                    price: "$249",
+                    description: "Multi-platform scripts",
+                    features: [
+                        "2000 words",
+                        "3 script types",
+                        "Advanced SEO",
+                        "5 revision rounds",
+                        "7-day delivery",
+                        "Competitor analysis",
+                        "A/B testing variants"
+                    ]
+                },
+                elite: {
+                    name: "Enterprise",
+                    price: "$499",
+                    description: "Complete campaign copy",
+                    features: [
+                        "5000+ words",
+                        "Unlimited script types",
+                        "Full SEO strategy",
+                        "Unlimited revisions",
+                        "14-day delivery",
+                        "Market research",
+                        "Performance tracking"
+                    ]
+                }
+            },
+            "SEO Optimization": {
+                starter: {
+                    name: "Launch",
+                    price: "$399",
+                    description: "Basic SEO setup",
+                    features: [
+                        "SEO audit",
+                        "Keyword research",
+                        "On-page optimization",
+                        "Basic reporting",
+                        "Monthly updates"
+                    ]
+                },
+                pro: {
+                    name: "Growth",
+                    price: "$799",
+                    description: "Comprehensive SEO",
+                    features: [
+                        "All Launch features",
+                        "Technical SEO",
+                        "Content optimization",
+                        "Advanced reporting",
+                        "Weekly optimizations",
+                        "Competitor analysis"
+                    ]
+                },
+                elite: {
+                    name: "Domination",
+                    price: "$1299",
+                    description: "Full SEO ecosystem",
+                    features: [
+                        "All Growth features",
+                        "Local SEO optimization",
+                        "Link building strategy",
+                        "Custom reporting dashboard",
+                        "Daily monitoring",
+                        "Priority support"
+                    ]
+                }
+            },
+            "AI Marketing": {
+                starter: {
+                    name: "Starter",
+                    price: "$599",
+                    description: "AI content generation",
+                    features: [
+                        "AI content creation",
+                        "Basic analytics",
+                        "Email automation",
+                        "Monthly reports",
+                        "Standard support"
+                    ]
+                },
+                pro: {
+                    name: "Professional",
+                    price: "$1199",
+                    description: "Advanced AI marketing",
+                    features: [
+                        "All Starter features",
+                        "Predictive analytics",
+                        "Campaign optimization",
+                        "Chatbot integration",
+                        "Weekly optimizations",
+                        "Priority support"
+                    ]
+                },
+                elite: {
+                    name: "Enterprise",
+                    price: "$1999",
+                    description: "Complete AI ecosystem",
+                    features: [
+                        "All Professional features",
+                        "Personalization engine",
+                        "Advanced A/B testing",
+                        "Custom AI models",
+                        "Dedicated account manager",
+                        "24/7 premium support"
+                    ]
+                }
+            }
+        };
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.querySelector('.nav-menu');
@@ -1059,7 +1701,7 @@
 
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
-                
+
                 question.addEventListener('click', () => {
                     // Close all other items
                     faqItems.forEach(otherItem => {
@@ -1067,7 +1709,7 @@
                             otherItem.classList.remove('active');
                         }
                     });
-                    
+
                     // Toggle current item
                     item.classList.toggle('active');
                 });
@@ -1109,12 +1751,84 @@
             checkScroll(); // Check on page load
 
             // Service Package Viewing
+            const pricingPopup = document.getElementById('pricingPopup');
+            const closePopup = document.getElementById('closePopup');
             const viewPackageButtons = document.querySelectorAll('.view-packages');
-            
+            const popupServiceTitle = document.getElementById('popupServiceTitle');
+            const pricingCardsContainer = document.getElementById('pricingCardsContainer');
+
             viewPackageButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const serviceName = button.getAttribute('data-service');
+                    popupServiceTitle.textContent = `${serviceName} Packages`;
+
+                    // Clear previous pricing cards
+                    pricingCardsContainer.innerHTML = '';
+
+                    // Get pricing data for this service
+                    const serviceData = servicePricing[serviceName];
+
+                    // Create pricing cards for this service
+                    for (const [tier, data] of Object.entries(serviceData)) {
+                        const pricingCard = document.createElement('div');
+                        pricingCard.className = `pricing-card ${tier}`;
+
+                        pricingCard.innerHTML = `
+                            <div class="card-glow"></div>
+                            <div class="card-header">
+                                <h3 class="tier-name">${data.name}</h3>
+                                <p class="tier-tagline">${data.description}</p>
+                                <div class="tier-price">${data.price}</div>
+                            </div>
+                            <ul class="features-list">
+                                ${data.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                            <button class="btn btn-primary btn-small purchase-btn">Purchase Now</button>
+                        `;
+
+                        pricingCardsContainer.appendChild(pricingCard);
+                    }
+
+                    pricingPopup.classList.add('active');
+                });
+            });
+
+            closePopup.addEventListener('click', () => {
+                pricingPopup.classList.remove('active');
+            });
+
+            // Purchase buttons (event delegation)
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('purchase-btn')) {
+                    alert("Thank you for your interest! Our team will contact you shortly to complete your purchase.");
+                    pricingPopup.classList.remove('active');
+                }
+            });
+
+            // Close popup when clicking outside
+            pricingPopup.addEventListener('click', (e) => {
+                if (e.target === pricingPopup) {
+                    pricingPopup.classList.remove('active');
+                }
+            });
+
+            // Learn More Functionality
+            const learnMoreButtons = document.querySelectorAll('.learn-more');
+
+            learnMoreButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const serviceName = this.getAttribute('data-service');
-                    alert(`Viewing packages for: ${serviceName}\n\nThis would open a detailed pricing modal with tiered packages for this specific service.`);
+                    const serviceCard = this.closest('.service-card');
+                    const serviceDetails = serviceCard.querySelector('.service-details');
+                    
+                    // Toggle the active class to show/hide details
+                    serviceDetails.classList.toggle('active');
+                    
+                    // Change button text based on state
+                    if (serviceDetails.classList.contains('active')) {
+                        this.textContent = 'Show Less';
+                    } else {
+                        this.textContent = 'Learn More';
+                    }
                 });
             });
         });
