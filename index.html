@@ -58,6 +58,79 @@
             position: relative;
         }
 
+        /* Brand Philosophy Section */
+        .philosophy-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(45, 27, 105, 0.2), rgba(12, 12, 12, 0.8));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(212,175,55,0.03)" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .philosophy-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy-quote {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .philosophy-quote blockquote {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1.4;
+            font-style: italic;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .philosophy-quote::before, .philosophy-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-gold);
+            opacity: 0.5;
+            position: absolute;
+            font-family: serif;
+        }
+
+        .philosophy-quote::before {
+            top: -20px;
+            left: 0;
+        }
+
+        .philosophy-quote::after {
+            bottom: -40px;
+            right: 0;
+        }
+
+        .philosophy-explanation {
+            margin-top: 40px;
+        }
+
+        .philosophy-explanation p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
         /* Navigation */
         .navbar {
             position: fixed;
@@ -986,6 +1059,15 @@
             .gallery-track {
                 animation-duration: 30s;
             }
+
+            /* Philosophy responsive adjustments */
+            .philosophy-quote blockquote {
+                font-size: 1.6rem;
+            }
+            
+            .philosophy-quote::before, .philosophy-quote::after {
+                font-size: 3rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1011,6 +1093,15 @@
 
             .popup-content {
                 padding: 30px 20px;
+            }
+
+            /* Philosophy responsive adjustments */
+            .philosophy-quote blockquote {
+                font-size: 1.4rem;
+            }
+            
+            .philosophy-explanation p {
+                font-size: 1rem;
             }
         }
     </style>
@@ -1052,6 +1143,24 @@
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down" style="font-size: 1.5rem;"></i>
+        </div>
+    </section>
+
+    <!-- Brand Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-content">
+                <h2 class="section-title">Our Philosophy</h2>
+                <div class="philosophy-quote">
+                    <blockquote>
+                        "They say every star has its place — but a shooting star burns brighter, faster, stronger. Make your wish now."
+                    </blockquote>
+                </div>
+                <div class="philosophy-explanation">
+                    <p>At ShootingStar, we believe in the power of bold, brilliant moments that transform businesses. While others follow predictable paths, we create meteoric rises — intense bursts of innovation that propel brands to new heights.</p>
+                    <p>Your moment is now. Don't wait for the stars to align — become the shooting star.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1664,18 +1773,18 @@
                 button.addEventListener('click', () => {
                     const serviceName = button.getAttribute('data-service');
                     popupServiceTitle.textContent = `${serviceName} Packages`;
-                    
+
                     // Clear previous pricing cards
                     pricingCardsContainer.innerHTML = '';
-                    
+
                     // Get pricing data for this service
                     const serviceData = servicePricing[serviceName];
-                    
+
                     // Create pricing cards for this service
                     for (const [tier, data] of Object.entries(serviceData)) {
                         const pricingCard = document.createElement('div');
                         pricingCard.className = `pricing-card ${tier}`;
-                        
+
                         pricingCard.innerHTML = `
                             <div class="card-glow"></div>
                             <div class="card-header">
@@ -1688,10 +1797,10 @@
                             </ul>
                             <button class="btn btn-primary btn-small purchase-btn">Purchase Now</button>
                         `;
-                        
+
                         pricingCardsContainer.appendChild(pricingCard);
                     }
-                    
+
                     pricingPopup.classList.add('active');
                 });
             });
